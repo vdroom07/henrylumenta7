@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Number Validator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            margin: 0;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            width: 50%;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.4);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            font-weight: 600;
+        }
+        input {
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            width: 80%;
+            margin: 15px 0;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        input:focus {
+            outline: none;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: #ff9a9e;
+            color: white;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        button:hover {
+            background: #fad0c4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 8px;
+            transition: opacity 0.5s, transform 0.5s;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fas fa-calculator"></i> Scientific Number Validator</h2>
+        <label for="inputNumber">Enter a number:</label>
+        <input type="text" id="inputNumber" placeholder="Enter a number">
+        <button onclick="validateNumber()"><i class="fas fa-check-circle"></i> Check</button>
+        <div id="message"></div>
+    </div>
+    
+    <script>
+        function validateNumber() {
+            let input = document.getElementById('inputNumber').value;
+            let regex = /^-?\d+(\.\d+)?([eE][-+]?\d+)?$/;
+            let message = document.getElementById('message');
+            
+            if (regex.test(input)) {
+                message.innerHTML = "<i class='fas fa-check'></i> Yes, it is a number";
+                message.style.color = "#4CAF50";
+                message.style.background = "#d4edda";
+            } else {
+                message.innerHTML = "<i class='fas fa-times'></i> No, it is not a number";
+                message.style.color = "#D8000C";
+                message.style.background = "#FFD2D2";
+            }
+            message.style.opacity = 1;
+            message.style.transform = "scale(1)";
+        }
+    </script>
+</body>
+</html>
